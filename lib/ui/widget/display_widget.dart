@@ -1,18 +1,18 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_database/ui/firebase_animated_list.dart';
 import 'package:flutter/material.dart';
+import 'package:my_small_application/ui/shared/app_colors.dart';
 
-class Contacts extends StatefulWidget {
+class DisplayWidget extends StatefulWidget {
   @override
   _ContactsState createState() => _ContactsState();
 }
 
-class _ContactsState extends State<Contacts> {
+class _ContactsState extends State<DisplayWidget> {
   Query _ref;
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     _ref = FirebaseDatabase.instance
         .reference()
@@ -24,14 +24,14 @@ class _ContactsState extends State<Contacts> {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
       padding: EdgeInsets.all(10),
-      color: Colors.white,
+      color: widgetBgColor,
       child: Card(
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.white70, width: 1),
-          borderRadius: BorderRadius.circular(10),
+          side: BorderSide(color: widgetBgColor, width: 1),
+          borderRadius: BorderRadius.circular(8.0),
         ),
         margin: EdgeInsets.all(10.0),
-        elevation: 5,
+        elevation: 3,
         child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,11 +40,11 @@ class _ContactsState extends State<Contacts> {
                 text: TextSpan(
                     text: 'First Name: ',
                     style: TextStyle(
-                        color: Colors.teal, fontSize: 18),
+                        color: primaryColor, fontSize: 18),
                     children: <TextSpan>[
                       TextSpan(text: '${register['firstName']}',
                         style: TextStyle(
-                            color: Colors.black, fontSize: 18),
+                            color: textColorBlack, fontSize: 18),
                       )
                     ]
                 ),
@@ -53,11 +53,11 @@ class _ContactsState extends State<Contacts> {
                 text: TextSpan(
                     text: 'Last Name:',
                     style: TextStyle(
-                        color: Colors.teal, fontSize: 18),
+                        color: primaryColor, fontSize: 18),
                     children: <TextSpan>[
                       TextSpan(text: '${register['lastName']}',
                         style: TextStyle(
-                            color: Colors.black, fontSize: 18),
+                            color: textColorBlack, fontSize: 18),
                       )
                     ]
                 ),
@@ -66,11 +66,11 @@ class _ContactsState extends State<Contacts> {
                 text: TextSpan(
                     text: 'Password:',
                     style: TextStyle(
-                        color: Colors.teal, fontSize: 18),
+                        color: primaryColor, fontSize: 18),
                     children: <TextSpan>[
                       TextSpan(text: ' ${register['password']}',
                         style: TextStyle(
-                            color: Colors.black, fontSize: 18),
+                            color: textColorBlack, fontSize: 18),
                       )
                     ]
                 ),
@@ -79,11 +79,11 @@ class _ContactsState extends State<Contacts> {
                 text: TextSpan(
                     text: 'Email Address:',
                     style: TextStyle(
-                        color: Colors.teal, fontSize: 18),
+                        color:primaryColor, fontSize: 18),
                     children: <TextSpan>[
                       TextSpan(text: ' ${register['emailAddress']}',
                         style: TextStyle(
-                            color: Colors.black, fontSize: 18),
+                            color: textColorBlack, fontSize: 18),
                       )
                     ]
                 ),
@@ -92,11 +92,11 @@ class _ContactsState extends State<Contacts> {
                 text: TextSpan(
                     text: 'City:',
                     style: TextStyle(
-                        color: Colors.teal, fontSize: 18),
+                        color: primaryColor, fontSize: 18),
                     children: <TextSpan>[
                       TextSpan(text: ' ${register['city']}',
                         style: TextStyle(
-                            color: Colors.black, fontSize: 18),
+                            color: textColorBlack, fontSize: 18),
                       )
                     ]
                 ),
@@ -105,11 +105,11 @@ class _ContactsState extends State<Contacts> {
                 text: TextSpan(
                     text: 'Street Name:',
                     style: TextStyle(
-                        color: Colors.teal, fontSize: 18),
+                        color: primaryColor, fontSize: 18),
                     children: <TextSpan>[
                       TextSpan(text: ' ${register['streetName']}',
                         style: TextStyle(
-                            color: Colors.black, fontSize: 18),
+                            color: textColorBlack, fontSize: 18),
                       )
                     ]
                 ),
@@ -123,7 +123,7 @@ class _ContactsState extends State<Contacts> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.teal,
+        backgroundColor: primaryColor,
         title: Text('List Data'),
       ),
       body: Container(
@@ -132,8 +132,8 @@ class _ContactsState extends State<Contacts> {
           query: _ref,
           itemBuilder: (BuildContext context, DataSnapshot snapshot,
               Animation<double> animation, int index) {
-            Map contact = snapshot.value;
-            return _buildContactItem(register: contact);
+            Map register = snapshot.value;
+            return _buildContactItem(register: register);
           },
         ),
       ),
