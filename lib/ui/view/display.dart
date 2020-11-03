@@ -124,7 +124,7 @@ class _ContactsState extends State<Contacts> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.teal,
-        title: Center(child: Text('Retrieve Data')),
+        title: Text('List Data'),
       ),
       body: Container(
         height: double.infinity,

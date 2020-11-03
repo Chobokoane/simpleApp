@@ -26,8 +26,33 @@ class _RegisterViewState extends State<RegisterView> {
      "city": cit,
      "streetName": street,
    };
-   _reference.push().set(reg);
+   _reference.push().set(reg).then((employeesDetails) {
+     _showDialog();
+   }).catchError((error) {
+     Text("'${error.toString()}");
+   });
    //https://www.youtube.com/watch?v=MwhgBYW-FNs
+ }
+ void _showDialog() {
+   // flutter defined function
+   showDialog(
+     context: context,
+     builder: (BuildContext context) {
+       // return object of type Dialog
+       return AlertDialog(
+         title: new Text("User Succesfully Registered"),
+         actions: <Widget>[
+           // usually buttons at the bottom of the dialog
+           new FlatButton(
+             child: new Text("Close"),
+             onPressed: () {
+               Navigator.of(context).pop();
+             },
+           ),
+         ],
+       );
+     },
+   );
  }
  @override
   void initState() {
@@ -40,7 +65,6 @@ class _RegisterViewState extends State<RegisterView> {
     streetName = TextEditingController();
     emailAddress = TextEditingController();
     _reference = FirebaseDatabase.instance.reference().child("Register");
-
   }
 
   @override
