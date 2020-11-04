@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:my_small_application/ui/view/landing_view.dart';
 import 'package:my_small_application/ui/view/register_view.dart';
 
 final debug = false;
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.light,
             primaryColor: Colors.blue,
           ),
-          home: RegisterView(),
+          home: LandingView(),
         );
   }
 }
